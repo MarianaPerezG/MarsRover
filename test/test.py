@@ -4,7 +4,7 @@ sys.path.append('../src')
 import unittest
 from rover import Rover
 from planet import Planet
-from main import validation_path, validation_instructions, launch_rover
+from main import validation_path, validation_instructions, launch_rover, validation_grid_size
 
 class TestRover(unittest.TestCase):
 	# Testing rover
@@ -50,6 +50,10 @@ class TestValidations(unittest.TestCase):
 	def test_launching_of_rover(self):
 
 		self.assertIsInstance(launch_rover('1 2 N'), Rover)
+
+	def test_validation_grid_size(self):
+
+		self.assertTrue(validation_grid_size('2 3'))
 
 
 # Para poder tener mas detalle sobre los resultados individuales de cada Test
