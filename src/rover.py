@@ -4,8 +4,8 @@ class Rover(object):
 
 	def __init__(self, x, y, direction, planet):
 
-		self.position_x = x
-		self.position_y = y
+		self.position_x = int(x)
+		self.position_y = int(y)
 		self.direction = direction
 		self.planet = planet
 
@@ -19,6 +19,23 @@ class Rover(object):
 			self.position_y -= 1
 		elif self.direction == 'W':
 			self.position_x -= 1
+
+		# Checking if the move can be made
+		if self.planet.grid[self.get_position()[0] -1][self.get_position()[1] -1] == 1:
+			self.go_back()
+		else:
+			return True
+
+	def go_back(self):
+
+		if self.direction == 'N':
+			self.position_y -= 1
+		elif self.direction == 'E':
+			self.position_x -= 1 
+		elif self.direction == 'S':
+			self.position_y += 1
+		elif self.direction == 'W':
+			self.position_x += 1
 
 	def turn_right(self):
 
@@ -35,4 +52,8 @@ class Rover(object):
 	def get_position(self):
 
 		return [self.position_x, self.position_y]
+
+	def print_status(self):
+
+		return "{} {} {}".format(self.position_x, self.position_y, self.direction)
 

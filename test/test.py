@@ -29,6 +29,14 @@ class TestRover(unittest.TestCase):
 		rover.move()
 		self.assertEqual(rover.get_position(), [0,1])
 
+	def test_go_back(self):
+
+		planet = Planet(2,2)
+		rover = Rover(0,1, 'N', planet)
+		rover.go_back()
+		self.assertEqual(rover.get_position(), [0,0])
+
+
 class TestPlanet(unittest.TestCase):
 	# Testing planet
 	def test_build_grid(self):

@@ -1,15 +1,21 @@
 from rover import Rover
 from planet import Planet
 
-def move_rover(path):
+def move_rover(rover, path):
 
 	# Function for movement of the rover following path
-	print 'MOVE'
+	for single_instruction in path:
+
+		if single_instruction == 'R':
+			rover.turn_right()
+		elif single_instruction == 'L':
+			rover.turn_left()
+		elif single_instruction == 'M':
+			rover.move()
 
 def launch_rover(instructions, planet):
 
-	instuctions = instructions.split(' ')
-
+	instructions = instructions.split(' ')
 	return Rover(instructions[0], instructions[1], instructions[2], planet)
 
 # Validation for the creation of the Planet instance
@@ -95,7 +101,9 @@ def main():
 
 			if validation_path(rover_path):
 
-				move_rover(rover_path)
+				move_rover(rover, rover_path)
+
+				print "OUTPUT:", rover.print_status()
 
 			else:
 				print 'Path given for the movement of rover is incorrect'
