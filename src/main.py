@@ -11,7 +11,11 @@ def move_rover(rover, path):
 		elif single_instruction == 'L':
 			rover.turn_left()
 		elif single_instruction == 'M':
-			rover.move()
+
+			if not rover.move():
+				return False
+
+	return True
 
 def launch_rover(instructions, planet):
 
@@ -101,10 +105,13 @@ def main():
 
 			if validation_path(rover_path):
 
-				move_rover(rover, rover_path)
+				if move_rover(rover, rover_path):
 
-				print "OUTPUT:", rover.print_status()
+					print rover.print_status()
 
+				else:
+					error_msg = "Ups! looks like the rover can't keep moving on the direction given. The finish position is: {}"
+					print  error_msg.format(rover.print_status())
 			else:
 				print 'Path given for the movement of rover is incorrect'
 
