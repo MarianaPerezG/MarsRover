@@ -2,11 +2,12 @@ directions = ['N', 'E', 'S', 'W']
 
 class Rover(object):
 
-	def __init__(self, x, y, direction):
+	def __init__(self, x, y, direction, planet):
 
 		self.position_x = x
 		self.position_y = y
 		self.direction = direction
+		self.planet = planet
 
 	def move(self):
 

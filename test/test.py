@@ -10,19 +10,22 @@ class TestRover(unittest.TestCase):
 	# Testing rover
 	def test_turn_right(self):
 
-		rover = Rover(0,0,'N')
+		planet = Planet(2,2)
+		rover = Rover(0,0,'N',planet)
 		rover.turn_right()
 		self.assertEqual(rover.direction, 'E')
 
 	def test_turn_left(self):
 
-		rover = Rover(0,0,'N')
+		planet = Planet(2,2)
+		rover = Rover(0,0,'N',planet)
 		rover.turn_left()
 		self.assertEqual(rover.direction, 'W')
 		
 	def test_move(self):
 
-		rover = Rover(0,0, 'N')
+		planet = Planet(2,2)
+		rover = Rover(0,0, 'N', planet)
 		rover.move()
 		self.assertEqual(rover.get_position(), [0,1])
 
@@ -49,7 +52,8 @@ class TestValidations(unittest.TestCase):
 
 	def test_launching_of_rover(self):
 
-		self.assertIsInstance(launch_rover('1 2 N'), Rover)
+		planet = Planet(2,2)
+		self.assertIsInstance(launch_rover('1 2 N', planet), Rover)
 
 	def test_validation_grid_size(self):
 

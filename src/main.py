@@ -6,11 +6,11 @@ def move_rover(path):
 	# Function for movement of the rover following path
 	print 'MOVE'
 
-def launch_rover(instructions):
+def launch_rover(instructions, planet):
 
 	instuctions = instructions.split(' ')
 
-	return Rover(instructions[0], instructions[1], instructions[2])
+	return Rover(instructions[0], instructions[1], instructions[2], planet)
 
 # Validation for the creation of the Planet instance
 def validation_grid_size(grid_size):
@@ -78,7 +78,7 @@ def main():
 	# Creating the planet
 	if validation_grid_size(grid_size):
 
-		mars = Planet(grid_size[0], grid_size[2])
+		planet = Planet(grid_size[0], grid_size[2])
 
 	else:
 		print 'Size of grid given is incorrect'
@@ -91,7 +91,7 @@ def main():
 
 		if validation_instructions(initiation_instructions):
 		
-			rover = launch_rover(initiation_instructions)
+			rover = launch_rover(initiation_instructions, planet)
 
 			if validation_path(rover_path):
 

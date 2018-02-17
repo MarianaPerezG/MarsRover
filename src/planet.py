@@ -12,6 +12,7 @@ class Planet(object):
 		# Array of rows with 0 representig no occupied spaces and 1 the ones with a rover.
 		w, h =  self.width, self.height
 		return [[0 for x in range(w)] for y in range(h)] 
+		
 
 
 
