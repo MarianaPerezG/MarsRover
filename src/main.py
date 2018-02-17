@@ -22,6 +22,7 @@ def launch_rover(instructions, planet):
 	instructions = instructions.split(' ')
 	return Rover(instructions[0], instructions[1], instructions[2], planet)
 
+
 # Validation for the creation of the Planet instance
 def validation_grid_size(grid_size):
 
@@ -102,6 +103,7 @@ def main():
 		if validation_instructions(initiation_instructions):
 		
 			rover = launch_rover(initiation_instructions, planet)
+			planet.add_rover(rover)
 
 			if validation_path(rover_path):
 
@@ -112,8 +114,11 @@ def main():
 				else:
 					error_msg = "Ups! looks like the rover can't keep moving on the direction given. The finish position is: {}"
 					print  error_msg.format(rover.print_status())
+
 			else:
 				print 'Path given for the movement of rover is incorrect'
+
+			planet.update_grid()
 
 		else:
 			print 'Instructions given for rover launching are incorrect'

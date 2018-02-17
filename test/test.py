@@ -49,6 +49,24 @@ class TestPlanet(unittest.TestCase):
 		mars = Planet(2,2)
 		self.assertEqual(mars.grid, [[0,0],[0,0]])
 
+	def test_add_rover(self):
+
+		planet = Planet(2,2)
+		rover = Rover(1,2,'N', planet)
+		self.assertEqual(len(planet.rovers), 0)
+		planet.add_rover(rover)
+		self.assertEqual(len(planet.rovers), 1)
+
+	def test_update_grid(self):
+
+		planet = Planet(2,2)
+		self.assertEqual(planet.grid[0][1], 0)
+		rover = Rover(1,2,'N', planet)
+		planet.add_rover(rover)
+		planet.update_grid()
+		self.assertEqual(planet.grid[0][1], 1)
+
+
 class TestValidations(unittest.TestCase):
 	# Testing validation functions on the main folder
 	def test_validation_of_path(self):
