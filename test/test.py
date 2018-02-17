@@ -36,6 +36,11 @@ class TestRover(unittest.TestCase):
 		rover.go_back()
 		self.assertEqual(rover.get_position(), [0,0])
 
+	def test_print_status(self):
+
+		planet = Planet(5,5)
+		rover = Rover(2,3,'N', planet)
+		self.assertEqual(rover.print_status(), '2 3 N')
 
 class TestPlanet(unittest.TestCase):
 	# Testing planet
