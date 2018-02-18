@@ -42,7 +42,7 @@ CODE FLOW
 
 9.The planet grid will be updated with the final position of the rover that just finished. 
 
-10.Once all rovers finished their movements, the plant will paint the final grid indicating empty spaces and spaces filled with a rover showing their direction.
+10.Once all rovers finished their movements, the planet will display the final grid indicating empty spaces and spaces filled with a rover showing their direction.
 
 
 —————————————————————————————————————————-
@@ -55,5 +55,5 @@ ASSUMPTIONS MADE
 
 - The format of the input file will always have the first line dedicated to the grid size and two by two the instructions for the rover initializing and movement.
 
-- If the initial position where the rover is sopped to be launched are occupied by another rover, it will not be launched and a warning will be shown.
+- If the initial position where the rover is supossed to be launched are occupied by another rover, it will not be launched and a warning will be shown.
 
