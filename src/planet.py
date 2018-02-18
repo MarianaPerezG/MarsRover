@@ -1,5 +1,4 @@
 from rover import Rover
-
 class Planet(object):
 
 	def __init__(self, x, y):
@@ -39,23 +38,55 @@ class Planet(object):
 				if self.grid[x][y-1] == 0:
 
 					drawn_grid += '|   |'
+				
 				else:
 
-					drawn_grid += '| X |'
+					rover = self.get_rover_on_position(x,y-1)
+
+					string = '| {} |'
+
+					rover_direction = rover.get_direction() 
+
+					if rover_direction == 'N':
+
+						char = '^'
+
+					elif rover_direction == 'E':
+
+						char = '>'
+
+					elif rover_direction == 'S':
+						
+						char = 'v'
+
+					else:
+
+						char = '<'
+
+					drawn_grid += string.format(char)
+
 
 			drawn_grid += '\n'
 
 		print drawn_grid
 
+	def get_rover_on_position(self, x, y):
 
 
-# planet = Planet(5,5)
-# print planet.grid
-# rover = Rover(1,3, 'N', planet)
-# planet.add_rover(rover)
-# planet.update_grid()
-# print planet.grid
-# planet.paint_grid()
+		for rover in self.rovers:
+
+			position = rover.get_position()
+			if position[0] == x and position[1] == y:
+
+				return rover 
+
+
+
+
+
+
+
+
 
 		
 

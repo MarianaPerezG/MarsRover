@@ -21,7 +21,7 @@ class Rover(object):
 			self.position_x -= 1
 
 		# Checking if the move can be made
-		if self.position_x > self.planet.width or self.position_y > self.planet.height:
+		if self.position_x >= self.planet.width or self.position_y >= self.planet.height:
 			self.go_back()
 			return False
 		if self.planet.grid[self.position_x][self.position_y] == 1:
@@ -55,6 +55,10 @@ class Rover(object):
 	def get_position(self):
 
 		return [self.position_x, self.position_y]
+
+	def get_direction(self):
+
+		return self.direction
 
 	def print_status(self):
 
