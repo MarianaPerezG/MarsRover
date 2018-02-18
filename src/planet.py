@@ -42,28 +42,29 @@ class Planet(object):
 
 					rover = self.get_rover_on_position(x,y-1)
 
-					string = '| {} |'
+					if rover != None:
 
-					rover_direction = rover.get_direction() 
+						string = '| {} |'
 
-					if rover_direction == 'N':
+						rover_direction = rover.get_direction() 
 
-						char = '^'
+						if rover_direction == 'N':
 
-					elif rover_direction == 'E':
+							char = '^'
 
-						char = '>'
+						elif rover_direction == 'E':
 
-					elif rover_direction == 'S':
-						
-						char = 'v'
+							char = '>'
 
-					else:
+						elif rover_direction == 'S':
+							
+							char = 'v'
 
-						char = '<'
+						else:
 
-					drawn_grid += string.format(char)
+							char = '<'
 
+						drawn_grid += string.format(char)
 
 			drawn_grid += '\n'
 
@@ -79,7 +80,7 @@ class Planet(object):
 
 				return rover 
 
-		return False
+		return None
 
 
 

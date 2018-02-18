@@ -5,7 +5,7 @@ import os
 def open_file(file_path):
 
 	if file_path == '':
-		file_path = 'input.txt'
+		file_path = 'src/input.txt'
 		
 	try:
 
@@ -14,9 +14,10 @@ def open_file(file_path):
 			content = input_text.readlines()
 
 			return  [result.strip() for result in content]
+
 	except Exception, e:
 
-		return False
+		return None
 
 def move_rover(rover, path):
 
@@ -106,15 +107,13 @@ def main():
 	content = open_file(file_path)
 
 	# If the path is incorrect, keep asking or get a blank to use the default
-	while not content:
+	while content == None:
 		file_path = raw_input( "The path given is incorrect or th file tracked has the wrong format. If blank, the file used will be the default one.\n")
 		content = open_file(file_path)
 
 	# Grid size received from input
 	grid_size = content[0]
 	
-	# else:
-	# 	print "The path given could'nt be followed to a valid file. Try again. Example of path: .../../input.txt. If blank, the default file will be used "
 
 	# Creating the planet
 	if validation_grid_size(grid_size):
