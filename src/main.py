@@ -112,13 +112,14 @@ def main():
 					print rover.print_status()
 
 				else:
-					error_msg = "Ups! looks like the rover can't keep moving on the direction given. The finish position is: {}"
+					error_msg = "Ups! looks like the rover can't keep moving on the direction given. The final position is: {}"
 					print  error_msg.format(rover.print_status())
 
 			else:
 				print 'Path given for the movement of rover is incorrect'
 
 			planet.update_grid()
+			planet.paint_grid()
 
 		else:
 			print 'Instructions given for rover launching are incorrect'

@@ -24,7 +24,7 @@ class Rover(object):
 		if self.position_x > self.planet.width or self.position_y > self.planet.height:
 			self.go_back()
 			return False
-		if self.planet.grid[self.position_x -1][self.position_y -1] == 1:
+		if self.planet.grid[self.position_x][self.position_y] == 1:
 			self.go_back()
 		else:
 			return True
