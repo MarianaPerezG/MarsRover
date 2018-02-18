@@ -6,6 +6,7 @@ def open_file(file_path):
 
 	if file_path == '':
 		file_path = 'input.txt'
+		
 	try:
 
 		with open(file_path) as input_text:
@@ -134,7 +135,7 @@ def main():
 
 				if move_rover(rover, rover_path):
 
-					print "Rover rover number {}  has finished its movements. It's final position is: {}".format((i+1)/2, rover.print_status())
+					print "The rover number {}  has finished its movements. It's final position is: {}".format((i+1)/2, rover.print_status())
 
 				else:
 				
