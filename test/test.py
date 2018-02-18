@@ -115,6 +115,12 @@ class TestValidations(unittest.TestCase):
 		planet = Planet(2,2)
 		self.assertIsInstance(launch_rover('1 2 N', planet), Rover)
 
+		rover = Rover(1,1,'S', planet)
+		planet.add_rover(rover)
+		planet.update_grid()
+		# send second one with same coordinates 
+		self.assertFalse(launch_rover('1 1 W', planet))
+
 	def test_validation_grid_size(self):
 
 		self.assertTrue(validation_grid_size('2 3'))

@@ -37,7 +37,14 @@ def move_rover(rover, path):
 def launch_rover(instructions, planet):
 
 	instructions = instructions.split(' ')
-	return Rover(instructions[0], instructions[1], instructions[2], planet)
+
+	if not planet.get_rover_on_position(int(instructions[0]), int(instructions[1])):
+
+		return Rover(instructions[0], instructions[1], instructions[2], planet)
+		
+	else:
+
+		return False
 
 # Validation for the creation of the Planet instance
 def validation_grid_size(grid_size):
@@ -129,22 +136,26 @@ def main():
 		if validation_instructions(initiation_instructions):
 
 			rover = launch_rover(initiation_instructions, planet)
-			planet.add_rover(rover)
+			
+			if rover:
+				planet.add_rover(rover)
 
-			if validation_path(rover_path):
+				if validation_path(rover_path):
 
-				if move_rover(rover, rover_path):
+					if move_rover(rover, rover_path):
 
-					print "The rover number {}  has finished its movements. It's final position is: {}".format((i+1)/2, rover.print_status())
+						print "The rover number {}  has finished its movements. It's final position is: {}".format((i+1)/2, rover.print_status())
+
+					else:
+					
+						print  "Ups! looks like the rover numer {} can't keep moving on the direction given. I'ts final position is: {}".format((i+1)/2,rover.print_status())
 
 				else:
-				
-					print  "Ups! looks like the rover numer {} can't keep moving on the direction given. I'ts final position is: {}".format((i+1)/2,rover.print_status())
+					print 'Path given for the movement of rover is incorrect'
 
+				planet.update_grid()
 			else:
-				print 'Path given for the movement of rover is incorrect'
-
-			planet.update_grid()
+				print 'A rover is already on the launching position. Rover {} not launched.'.format((i+1)/2)
 
 		else:
 			print 'Instructions given for rover launching are incorrect'

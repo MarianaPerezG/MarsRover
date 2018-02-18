@@ -71,13 +71,15 @@ class Planet(object):
 
 	def get_rover_on_position(self, x, y):
 
-
 		for rover in self.rovers:
 
 			position = rover.get_position()
+		
 			if position[0] == x and position[1] == y:
 
 				return rover 
+
+		return False
 
 
 
