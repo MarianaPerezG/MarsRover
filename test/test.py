@@ -21,7 +21,19 @@ class TestRover(unittest.TestCase):
 		rover = Rover(0,0,'N',planet)
 		rover.turn_left()
 		self.assertEqual(rover.direction, 'W')
-		
+
+	def test_get_position(self):
+
+		planet = Planet(2,2)
+		rover = Rover(1,1,'S', planet)
+		self.assertEqual(rover.get_position(), [1,1])
+
+	def test_get_direction(self):
+
+		planet = Planet(2,2)
+		rover = Rover(1,1,'S', planet)
+		self.assertEqual(rover.get_direction(), 'S')
+
 	def test_move(self):
 
 		planet = Planet(2,2)
@@ -42,12 +54,13 @@ class TestRover(unittest.TestCase):
 		rover = Rover(2,3,'N', planet)
 		self.assertEqual(rover.print_status(), '2 3 N')
 
+
 class TestPlanet(unittest.TestCase):
 	# Testing planet
 	def test_build_grid(self):
 
 		mars = Planet(2,2)
-		self.assertEqual(mars.grid, [[0,0],[0,0]])
+		self.assertEqual(mars.grid, [[0,0,0],[0,0,0],[0,0,0]])
 
 	def test_add_rover(self):
 
@@ -60,11 +73,27 @@ class TestPlanet(unittest.TestCase):
 	def test_update_grid(self):
 
 		planet = Planet(2,2)
-		self.assertEqual(planet.grid[0][1], 0)
+		self.assertEqual(planet.grid[1][2], 0)
 		rover = Rover(1,2,'N', planet)
 		planet.add_rover(rover)
 		planet.update_grid()
-		self.assertEqual(planet.grid[0][1], 1)
+		self.assertEqual(planet.grid[1][2], 1)
+
+	def test_get_rover_on_position(self):
+
+		planet = Planet(5,5)
+		rover = Rover(2,1,'N', planet)
+		planet.add_rover(rover)
+		planet.update_grid()
+
+		self.assertIsInstance(planet.get_rover_on_position(2,1), Rover)
+		self.assertEqual(planet.get_rover_on_position(2,1), rover)
+
+		rover2 = Rover(3,5, 'S', planet)
+		planet.add_rover(rover2)
+		planet.update_grid()
+
+		self.assertEqual(planet.get_rover_on_position(3,5), rover2)
 
 
 class TestValidations(unittest.TestCase):

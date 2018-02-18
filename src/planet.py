@@ -1,4 +1,3 @@
-from rover import Rover
 class Planet(object):
 
 	def __init__(self, x, y):

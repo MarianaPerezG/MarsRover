@@ -22,7 +22,6 @@ def launch_rover(instructions, planet):
 	instructions = instructions.split(' ')
 	return Rover(instructions[0], instructions[1], instructions[2], planet)
 
-
 # Validation for the creation of the Planet instance
 def validation_grid_size(grid_size):
 
