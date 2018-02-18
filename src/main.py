@@ -1,5 +1,21 @@
 from rover import Rover
 from planet import Planet
+import os
+
+def open_file(file_path):
+
+	if file_path == '':
+		file_path = 'input.txt'
+	try:
+
+		with open(file_path) as input_text:
+
+			content = input_text.readlines()
+
+			return  [result.strip() for result in content]
+	except Exception, e:
+
+		return False
 
 def move_rover(rover, path):
 
@@ -75,15 +91,22 @@ def validation_instructions(instructions):
 
 
 def main():
+	
+	file_path = raw_input('Please insert the path to the text file that will be used to start the program. If blank, the file used will be the default one.\n')
+	
+	# Opening the file with input specified
+	content = open_file(file_path)
 
-	# Opening the file input.txt with the instructions
-	with open('input.txt') as input_text:
-
-		content = input_text.readlines()
-		content = [result.strip() for result in content]
+	# If the path is incorrect, keep asking or get a blank to use the default
+	while not content:
+		file_path = raw_input( "The path given is incorrect or th file tracked has the wrong format. If blank, the file used will be the default one.\n")
+		content = open_file(file_path)
 
 	# Grid size received from input
 	grid_size = content[0]
+	
+	# else:
+	# 	print "The path given could'nt be followed to a valid file. Try again. Example of path: .../../input.txt. If blank, the default file will be used "
 
 	# Creating the planet
 	if validation_grid_size(grid_size):
@@ -127,6 +150,7 @@ def main():
 
 	print 'Final map of the planet is:\n'
 	planet.paint_grid()
+
 
 
 if __name__ == "__main__":
