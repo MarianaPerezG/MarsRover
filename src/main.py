@@ -94,14 +94,17 @@ def main():
 	else:
 		print 'Size of grid given is incorrect'
 
+		
+	print '{} rovers are about to be launched.'.format(len(content)/2)
+
 	# Launch every rover on the instructions read before
-	for i in range(1,len(content),2):
+	for  i in range(1,len(content),2):
 
 		initiation_instructions = content[i]
 		rover_path = content[i+1]
 
 		if validation_instructions(initiation_instructions):
-		
+
 			rover = launch_rover(initiation_instructions, planet)
 			planet.add_rover(rover)
 
@@ -109,20 +112,22 @@ def main():
 
 				if move_rover(rover, rover_path):
 
-					print rover.print_status()
+					print "Rover rover number {}  has finished its movements. It's final position is: {}".format((i+1)/2, rover.print_status())
 
 				else:
-					error_msg = "Ups! looks like the rover can't keep moving on the direction given. The final position is: {}"
-					print  error_msg.format(rover.print_status())
+				
+					print  "Ups! looks like the rover numer {} can't keep moving on the direction given. I'ts final position is: {}".format((i+1)/2,rover.print_status())
 
 			else:
 				print 'Path given for the movement of rover is incorrect'
 
 			planet.update_grid()
-			planet.paint_grid()
 
 		else:
 			print 'Instructions given for rover launching are incorrect'
+
+	print 'Final map of the planet is:\n'
+	planet.paint_grid()
 
 
 if __name__ == "__main__":
